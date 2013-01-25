@@ -159,3 +159,23 @@ a look at the Users Guide:
   /home/qiailin/.rvm/gems/ruby-1.9.3-p374/gems/passenger-3.0.19/doc/Users guide Nginx.html
 qiailin@localhost:~$ 
 
+
+
+Installation instructions for required software
+
+ * To install Curl development headers with SSL support:
+   Please run apt-get install libcurl4-openssl-dev or libcurl4-gnutls-dev, whichever you prefer.
+
+ * To install OpenSSL development headers:
+   Please run apt-get install libssl-dev as root.
+
+ * To install Zlib development headers:
+   Please run apt-get install zlib1g-dev as root.
+
+If the aforementioned instructions didn't solve your problem, then please take
+a look at the Users Guide:
+
+  /home/qiailin/.rvm/gems/ruby-1.9.3-p374/gems/passenger-3.0.19/doc/Users guide Nginx.html
+qiailin@localhost:~$ 
+
+
