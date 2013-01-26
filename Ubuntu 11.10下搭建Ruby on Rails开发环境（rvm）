@@ -1,0 +1,67 @@
+1.先安装gcc,mysql和一些库
+
+sudo apt-get update sudo apt-get upgrade
+sudo apt-get dist-upgrade
+sudo reboot #重启一下~~
+
+2.安装RVM
+机器重启后，再次登录并打开一个终端窗口。RVM 脚本需要先安装好 Curl 和 Git。Curl 是一个使用多种协议（如 HTTP 或 FTP）进行数据传输的工具。而“Git 是一个免费的开源分布式版本控制系统，适用于从小型项目到非常大的项目，兼顾了速度和效率。”Git是多数 Ruby on Rails 开发者所选择的版本控制系统。
+
+1.$ sudo apt-get install curl
+
+2.$ sudo apt-get install git-core
+配置Git
+Git 会在 RVM 脚本中使用，我们也在在本教程的第二部分中使用它。安装之后，我们需要花一点时间来配置它。配置很容易：只要提供一个用户名和邮件地址即可。
+$ git config --global user.name "Your Name"
+$ git config --global user.email your-email@address.com
+如：
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@mail.com
+现在我们可以安装 RVM 了。RVM 的意思是 Ruby 版本管理器，“是一个命令行工具，让你容易的安装、管理和使用多个 Ruby 环境及其相应的 Gem 包。”下列命令来安装这个脚本。RVM 将安装在你当前登录用户的主目录里。
+$ bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
+切换到主目录，然后修改用户的 bash 设置文件，以确保每次用户登录时候 RVM 脚本都会载入。我们使用 Nano 来编辑 bash 设置文件。Nano 是一个简单的命令行的文本编辑器，以后我们还会使用到它。
+
+1.$ cd
+2.$ nano .bashrc
+在你的 bash 设置文件末尾加入以下行。编辑之后，按下 CTRL + O 保存，然后按 CTRL + X 退出 Nano。如果你希望不保存而退出 Nano，按下 CTRL + X 然后按 N。
+
+1.[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+用以下命令行在当前登录中手动重新载入设置文件，也可以另外打开一个新的终端窗口自动载入。这样 rvm 命令就可以用了。
+
+1.$ source .bashrc
+你可以通过下列命令来检查 RVM 脚本是否可以工作。
+
+1.$ type rvm | head -1
+如果一切正常，命令将返回“rvm is a function”(rvm 是函数)。否则，可以访问 RVM 网站的“Troubleshooting your install”栏目找找解决办法。
+
+3.为安装ruby和rubygems做准备
+
+在从源代码编译和安装 Ruby 和 RubyGems 时，RVM 可以很方便的查看之间的软件包依赖关系。
+
+1.$ rvm notes
+可以列出标准版的 Ruby 所需的依赖包，和安装它们的命令。有些包也许已经安装好了。
+
+1.$ sudo apt-get install build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev
+4.安装ruby和rubygems
+RVM 也有一个命令可以看到哪个版本的 Ruby 可安装。通过以下命令查看哪些 Ruby 版本可以安装：
+
+1.$ rvm list known
+安装标准版的 Ruby，由于需要从源代码编译，所以需要一些时间。
+
+1.$ rvm install 1.9.2
+使用安装好的 Ruby 前，需要设置该版本为默认版本。
+
+1.$ rvm --default use 1.9.2
+检查一下 Ruby 和 RubyGems 的版本，来确保正确安装。
+
+1.$ ruby -v
+2.$ gem -v
+如有必要，手动更新一下 RubyGems 和其他需要更新的 Gem 。
+
+1.$ gem update --system
+2.$ gem update
+5.安装rails
+Rails 全部都打包在 Rails Gem 中。安装它是这个教程中最容易的部分。使用 RubyGems 来安装它，即 gem 命令。安装完成后，检查其版本来确保正确安装。
+
+1.$ gem install rails
+2.$ rails -v
